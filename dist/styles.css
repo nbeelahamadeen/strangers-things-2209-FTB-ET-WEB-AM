@@ -31,16 +31,52 @@ a:hover{
 }
 .displayPosts{
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items:center;
+  background: grey;
+  border-radius: 10px;
+  margin: 5px;
 }
+
+.displayLoginForm{
+display: flex;
+flex: center;
+flex-direction: column;
+align-content: center;
+justify-items: center;
+min-height: 50px;
+min-width: 50px;
+margin-top: 50px;
+margin-left: 20px;
+margin-right: 20px;
+
+}
+.displayRegisterForm{
+display: flex;
+flex: center;
+flex-direction: column;
+align-content: center;
+justify-items: center;
+min-height: 50px;
+min-width: 50px;
+margin-top: 50px;
+margin-left: 20px;
+margin-right: 20px;
+}
+
 body{
 background: #000000; 
 background: -webkit-linear-gradient(to bottom, #434343, #000000);  
 background: linear-gradient(to bottom, #434343, #000000); 
 border: 0; 
 margin: 0;
+text-align: center;
 }
 h2{
   color: #dd1818;
+  margin: 0;
+}
+h3{
+  margin: 0;
 }
