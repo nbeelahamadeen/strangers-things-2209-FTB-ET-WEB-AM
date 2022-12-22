@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const DeletePostButton = ({ postId, token, isAuthor }) =>{
 
 const deletePost  = (postId, token) =>{
-    fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/5e8d1bd48829fb0017d2233b', {
+    fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}`, {
   method: "DELETE",
   headers: {
     'Content-Type': 'application/json',
@@ -15,9 +15,9 @@ const deletePost  = (postId, token) =>{
   })
   .catch(console.error);
 };
-return isAuthor ? (
+return (
     <button onClick={() => deletePost(postId, token)}>Delete Post</button>
-  ) : null;
+  );
 };
 
 export default DeletePostButton;

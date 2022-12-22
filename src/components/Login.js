@@ -5,7 +5,7 @@ const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const {user, setUser ,isLoggedIn , setIsLoggedIn} = props;
+  const {user, setUser ,isLoggedIn , setIsLoggedIn, getPosts} = props;
   const navigate = useNavigate(); 
 
 
@@ -35,6 +35,7 @@ const Login = (props) => {
         const token = result.data.token;
         window.localStorage.setItem('token', token);
         exchangeTokenForUser();
+        getPosts();
         console.log(user)
         setIsLoggedIn(true);
         navigate('/posts');  

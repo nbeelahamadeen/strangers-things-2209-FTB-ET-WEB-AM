@@ -14,19 +14,25 @@ const App = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   const token = window.localStorage.getItem('token');
-  // const navigate = useNavigate();
 
 
   /// get posts and display function
   const getPosts = async ()=> {
-    await fetch('https://strangers-things.herokuapp.com/api/2209-ftb-et-web-am/posts')
+    await fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts', {
+      headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${ token }` 
+      },
+    })
     .then(response => response.json())
     .then(posts => {
       setPosts(posts.data.posts);
       console.log(posts)
     });
   }
+
 
   
   //swap token for user
@@ -53,7 +59,7 @@ const App = () => {
   useEffect(() => {
     getPosts();
     exchangeTokenForUser();
-  }, []);
+  }, [token]);
 
 
   return (
@@ -67,7 +73,7 @@ const App = () => {
       <Routes>
         <Route exact path='/' element={<Navigate to='/posts'/>}/>
         <Route path='/posts' element={<div ><Post posts={posts} setPosts={setPosts} isLoggedIn={ isLoggedIn } /></div>} />
-        <Route path='/login' element={<div><Login exchangeTokenForUser = { exchangeTokenForUser } user = { user } setUser ={ setUser} setIsLoggedIn = {setIsLoggedIn} isLoggedIn={isLoggedIn}/></div>} />
+        <Route path='/login' element={<div><Login exchangeTokenForUser = { exchangeTokenForUser } user = { user } setUser ={ setUser} setIsLoggedIn = {setIsLoggedIn} isLoggedIn={isLoggedIn} getPosts= {getPosts}/></div>} />
         <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
         <Route path='/login/postForm' element= { <PostForm token={token}/> } />
       </Routes>
