@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const {user} = props;
-//   const [user, setUser] = useState({});
+  const {user, setUser ,isLoggedIn , setIsLoggedIn} = props;
   const navigate = useNavigate(); 
 
 
@@ -24,10 +23,10 @@ const Login = (props) => {
           user: {
             username: username,
             password: password,
-          },
-        }),
-      }
-    )
+            },
+          }),
+         }
+        )
       .then((response) => response.json())
       .then((result) => {
         if (!result.success) {
@@ -36,25 +35,39 @@ const Login = (props) => {
         const token = result.data.token;
         window.localStorage.setItem('token', token);
         exchangeTokenForUser();
-        navigate('/posts');
+        console.log(user)
+        setIsLoggedIn(true);
+        navigate('/posts');  
+        
       })
       .catch((err) => console.log(err));
+
   };
+
 
   const logout = ()=> {
     window.localStorage.removeItem('token');
     setUser({});
+    window.location.reload(false);
   } 
+
 
   
 
   return (
     <div>
     {
-        user._id ? <div>Welcome { user.username } <button onClick={ logout }>Logout</button></div> : null
+        isLoggedIn ? 
+        <div>
+        <h1>Welcome Stranger {user.username}!</h1> <br/>
+        <button onClick={ ev => navigate('./postForm')}>Make a post</button>
+        <button onClick={ logout }>Logout</button>
+
+        </div> 
+        : null
       }
       {
-        !user._id ? (
+        !isLoggedIn ? (
             <div>
                 <form className='displayLoginForm' onSubmit={login}>
                 <input
@@ -65,6 +78,7 @@ const Login = (props) => {
                 <input
                 placeholder="password"
                 value={password}
+                type="password"
                 onChange={(ev) => setPassword(ev.target.value)}
                 />
                 <button disabled={!username || !password}>Login</button>

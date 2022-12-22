@@ -33,10 +33,11 @@ a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
+  align-items:flex-start;
   background: grey;
   border-radius: 10px;
-  margin: 5px;
+  margin: 20px;
+  padding: 10px;
 }
 
 .displayLoginForm{

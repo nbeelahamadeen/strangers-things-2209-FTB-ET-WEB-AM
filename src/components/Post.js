@@ -11,6 +11,7 @@ const Post = (props) => {
     }
     return (  <main>  
        <div>
+       <h1>Posts</h1>
         {
             posts.length ? 
             

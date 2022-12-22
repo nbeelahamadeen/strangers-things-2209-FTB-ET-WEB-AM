@@ -4,7 +4,7 @@ import React, {Fragment, useState} from "react";
 const Register = (props) => {
     const [registerUsername, setRegisterUsername] = useState('');
     const [registerPassword, setRegisterPassword] = useState('');
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
 
 
     const register = (ev)=> {
@@ -45,6 +45,7 @@ const Register = (props) => {
           <input 
             placeholder='password'
             value={ registerPassword }
+            type="password"
             onChange = { ev => setRegisterPassword(ev.target.value)}
           />
           <button>Register</button>

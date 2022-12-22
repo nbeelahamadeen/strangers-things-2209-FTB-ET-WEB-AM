@@ -1,17 +1,22 @@
 import ReactDOM from 'react-dom/client';
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Link} from 'react-router-dom';
+import { HashRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
 
-import{
-  Post,
-  Login,
-  Register,
-} from './components/index.js';
+import{default as Post} from './components/Post';
+import{default as Login} from './components/Login';
+import{default as Register} from './components/Register';
+import{default as PostForm} from './components/PostForm';
+import {default as DeletePostButton} from './components/DeletePost';
+
 
 const App = () => {
   // Set initial state for the posts, login and register
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const token = window.localStorage.getItem('token');
+  // const navigate = useNavigate();
+
 
   /// get posts and display function
   const getPosts = async ()=> {
@@ -23,14 +28,11 @@ const App = () => {
     });
   }
 
-  const isLoggedIn = ()=> {
-    user._id ? <div>Welcome { user.username } <button onClick={ logout }>Logout</button></div> : null
-  }
-
+  
   //swap token for user
   const exchangeTokenForUser = ()=> {
-    const token = window.localStorage.getItem('token');
     if(token){
+      setIsLoggedIn(true);
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
         headers: {
         'Content-Type': 'application/json',
@@ -42,6 +44,7 @@ const App = () => {
         const user = result.data;
         console.log(user);
         setUser(user);
+        setIsLoggedIn(true);
       })
       .catch(err => console.log(err));
     }
@@ -50,7 +53,6 @@ const App = () => {
   useEffect(() => {
     getPosts();
     exchangeTokenForUser();
-    isLoggedIn();
   }, []);
 
 
@@ -63,9 +65,11 @@ const App = () => {
         <Link to='/register'>Register</Link>
       </nav>
       <Routes>
-        <Route path='/posts' element={<div ><Post posts={posts} setPosts={setPosts} isLoggedIn={ isLoggedIn }/></div>} />
-        <Route path='/login' element={<div><Login exchangeTokenForUser = { exchangeTokenForUser } user = { user } setUser ={ setUser}/></div>} />
+        <Route exact path='/' element={<Navigate to='/posts'/>}/>
+        <Route path='/posts' element={<div ><Post posts={posts} setPosts={setPosts} isLoggedIn={ isLoggedIn } /></div>} />
+        <Route path='/login' element={<div><Login exchangeTokenForUser = { exchangeTokenForUser } user = { user } setUser ={ setUser} setIsLoggedIn = {setIsLoggedIn} isLoggedIn={isLoggedIn}/></div>} />
         <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
+        <Route path='/login/postForm' element= { <PostForm token={token}/> } />
       </Routes>
     </div>
   );
