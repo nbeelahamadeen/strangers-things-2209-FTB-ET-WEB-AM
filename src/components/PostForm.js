@@ -1,16 +1,15 @@
 import React, {Fragment, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const PostForm = (props)=> {
-    const {token} = props;
-    const [submitObject, setSubmitObject] = useState({});
+    const {token, getPosts} = props;
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
     const [location, setLocation] = useState('');
-    const [createdAt, updatedAt] = useState('');
-
+    
 
 const createPostForm = ({token, title, description, price, willDeliver, location}) => {  
     fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts', {
@@ -26,9 +25,6 @@ const createPostForm = ({token, title, description, price, willDeliver, location
       price,
       willDeliver,
       location,
-      active,
-      createdAt,
-      updatedAt,
     }
   })
 }).then(response => response.json())
@@ -38,10 +34,14 @@ const createPostForm = ({token, title, description, price, willDeliver, location
   .catch(console.error);
 }
 
+const navigate = useNavigate();
+
 const submitPost = (ev) =>{
     ev.preventDefault();
-    setSubmitObject();
     createPostForm({token, title, description, price, willDeliver, location, });
+    getPosts();
+    navigate('/posts');
+
 }
 
 return (

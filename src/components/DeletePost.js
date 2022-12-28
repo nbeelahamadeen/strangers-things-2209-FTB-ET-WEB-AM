@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-const DeletePostButton = ({ postId, token, isAuthor }) =>{
+const DeletePostButton = ({ postId, token }) =>{
 
 const deletePost  = (postId, token) =>{
+  console.log(token);
     fetch(`https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}`, {
   method: "DELETE",
   headers: {
@@ -12,6 +13,7 @@ const deletePost  = (postId, token) =>{
 }).then((response) => response.json())
   .then((result) => {
     console.log(result);
+    window.location.reload(false);
   })
   .catch(console.error);
 };

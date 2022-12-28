@@ -34,12 +34,23 @@ a:hover{
   flex-direction: column;
   justify-content: center;
   align-items:flex-start;
-  background: grey;
+  text-align: start;
   border-radius: 10px;
   margin: 20px;
   padding: 10px;
+  background: #8E0E00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #1F1C18, #8E0E00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  
 }
 
+.myPost{
+  background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #e74c3c, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #e74c3c, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 .displayLoginForm{
 display: flex;
 flex: center;
@@ -51,6 +62,7 @@ min-width: 50px;
 margin-top: 50px;
 margin-left: 20px;
 margin-right: 20px;
+
 
 }
 .displayRegisterForm{
@@ -80,4 +92,5 @@ h2{
 }
 h3{
   margin: 0;
+  color: rgb(201, 182, 182);
 }

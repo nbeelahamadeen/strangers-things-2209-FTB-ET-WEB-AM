@@ -7,6 +7,7 @@ import{default as Login} from './components/Login';
 import{default as Register} from './components/Register';
 import{default as PostForm} from './components/PostForm';
 import {default as DeletePostButton} from './components/DeletePost';
+import {default as EditPostButton} from './components/EditPost';
 
 
 const App = () => {
@@ -72,10 +73,10 @@ const App = () => {
       </nav>
       <Routes>
         <Route exact path='/' element={<Navigate to='/posts'/>}/>
-        <Route path='/posts' element={<div ><Post posts={posts} setPosts={setPosts} isLoggedIn={ isLoggedIn } /></div>} />
+        <Route path='/posts' element={<div ><Post posts={posts} setPosts={setPosts} isLoggedIn={ isLoggedIn } token={ token  } /></div>} />
         <Route path='/login' element={<div><Login exchangeTokenForUser = { exchangeTokenForUser } user = { user } setUser ={ setUser} setIsLoggedIn = {setIsLoggedIn} isLoggedIn={isLoggedIn} getPosts= {getPosts}/></div>} />
         <Route path='/register' element={<div><Register exchangeTokenForUser = {exchangeTokenForUser}/></div>} />
-        <Route path='/login/postForm' element= { <PostForm token={token}/> } />
+        <Route path='/login/postForm' element= { <PostForm token={token} getPosts={getPosts}/> } />
       </Routes>
     </div>
   );
