@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {default as DeletePostButton} from "./DeletePost";
-import {default as EditPostButton} from "./EditPost"
+import {default as EditPostButton} from "./EditPost";
+import {default as SendMessageButton} from "./SendMessage";
 import { useNavigate } from "react-router-dom";
 
 
@@ -34,7 +35,9 @@ const Post = (props) => {
                     {post.isAuthor ? (<DeletePostButton postId={post._id} token={token} />
                     ) : null}
                     {post.isAuthor ? (<EditPostButton postId={post._id} token={token} />
-                    ) : null}                    
+                    ) : null} 
+                    {post.isAuthor ? null 
+                    : (<SendMessageButton postId={post._id} token={token} />)}                    
                     </div>
                 )
             })

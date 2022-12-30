@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {default as ViewMessages} from './Messages';
 
 const Login = (props) => {
   const exchangeTokenForUser = props.exchangeTokenForUser;
+  const token = props.token;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {user, setUser ,isLoggedIn , setIsLoggedIn, getPosts} = props;
@@ -63,7 +65,8 @@ const Login = (props) => {
         <div>
         <h1>Welcome Stranger {user.username}!</h1> <br/>
         <button onClick={ ev => navigate('./postForm')}>Make a post</button>
-        <button onClick={ logout }>Logout</button>
+        <button onClick={ logout }> Logout </button>
+        <section><ViewMessages  token={token} user ={user} /></section>
 
         </div> 
         : null

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const EditPostButton = ({ postId, token, onEdit }) => {
+const EditPostButton = ({ postId, token }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -8,7 +8,7 @@ const EditPostButton = ({ postId, token, onEdit }) => {
   const [willDeliver, setWillDeliver] = useState(false);
   const [location, setLocation] = useState("");
 
-  const editPost = (postId, token, data) => {
+  const editPost = (postId, token) => {
     
     fetch(`http://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/posts/${postId}`, {
   method: "PATCH",

@@ -8,6 +8,7 @@ import{default as Register} from './components/Register';
 import{default as PostForm} from './components/PostForm';
 import {default as DeletePostButton} from './components/DeletePost';
 import {default as EditPostButton} from './components/EditPost';
+import {default as ViewMessages} from './components/Messages';
 
 
 const App = () => {
@@ -68,8 +69,8 @@ const App = () => {
       <h1 className='title'>Strangers Things</h1>
       <nav className='links'>
         <Link to='/posts'>Posts ({posts.length})</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
+        <Link to='/login'>{ token ? "Messages" : "Login"}</Link>
+        {token ? null : <Link to='/register'>Register</Link> }
       </nav>
       <Routes>
         <Route exact path='/' element={<Navigate to='/posts'/>}/>
