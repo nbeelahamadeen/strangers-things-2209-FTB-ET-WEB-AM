@@ -45,8 +45,9 @@ const submitPost = (ev) =>{
 }
 
 return (
-        <div>
-            <form onSubmit={ev => submitPost(ev)}>
+        <div >
+          <h2 className="postFormTitle">Write A Post</h2>
+            <form className="postForm" onSubmit={ev => submitPost(ev)}>
                 <h3>Title: <input placeholder='' 
                 value={title}
                 onChange={(ev) => setTitle(ev.target.value)}/>

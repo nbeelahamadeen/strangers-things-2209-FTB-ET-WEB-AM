@@ -73,7 +73,8 @@ const Login = (props) => {
       }
       {
         !isLoggedIn ? (
-            <div>
+            <div className='preLogin'>
+                <h2 className='signin'>Please sign in</h2>
                 <form className='displayLoginForm' onSubmit={login}>
                 <input
                 placeholder="username"

@@ -9,16 +9,16 @@ if(!user._id){
 }
   return (
     
-    <div>
-      <h3>Messages</h3>
+    <div className="displayMessages">
+      <h2 className="messageTitle">Messages</h2>
       <ul>
         {
             user.messages.length ? 
             user.messages.map((message) => (
-          <div key={message._id}>
+          <div className="message" key={message._id}>
 
-            <h2>From user :{message.fromUser.username}</h2>
-            <h3>Message :{message.content}</h3>
+            <h3>From user :{message.fromUser.username}</h3>
+            <h3 className="messageBottom">Message :{message.content}</h3>
             </div>
         ))
         :   <div>

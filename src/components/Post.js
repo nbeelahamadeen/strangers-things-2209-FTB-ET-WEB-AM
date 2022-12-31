@@ -20,8 +20,7 @@ const Post = (props) => {
        <h1>Posts</h1>
        <button onClick={ ev => navigate('/login/postForm')}>Make a post</button>
         {
-            posts.length ? 
-            
+            posts.length ?   
             posts.map( post => {
                 return(
                     <div className={post.isAuthor ? 'displayPosts myPost' : 'displayPosts'} key={post._id}>

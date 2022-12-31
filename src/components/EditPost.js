@@ -35,11 +35,12 @@ const EditPostButton = ({ postId, token }) => {
   };
 
   return isEditing ? (
-    <form
+    <form className="editForm"
       onSubmit={(ev) => {
         ev.preventDefault();
         editPost(postId, token, { title, description, price, willDeliver, location });
         }}>
+          <h3>Make changes to this post below:</h3>
           <h3>Title: <input placeholder="" value={title} onChange={(ev) => setTitle(ev.target.value)} /></h3>
           <h3>
           Description: <input value={description} onChange={(ev) => setDescription(ev.target.value)} />

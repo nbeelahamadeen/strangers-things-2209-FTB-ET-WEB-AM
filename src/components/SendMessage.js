@@ -27,7 +27,8 @@ const SendMessageButton = (props) => {
  }
   return sentMessage ? (
     <form
-      onSubmit={(ev) => {
+        className="sendForm"
+        onSubmit={(ev) => {
         ev.preventDefault();
         sendMesage(token, postId);
       }}>
