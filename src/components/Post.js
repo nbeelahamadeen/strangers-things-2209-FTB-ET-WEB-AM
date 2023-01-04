@@ -18,13 +18,13 @@ const Post = (props) => {
     return (  <main>  
        <div>
        <h1>Posts</h1>
-       <button onClick={ ev => navigate('/login/postForm')}>Make a post</button>
+       
         {
             posts.length ?   
             posts.map( post => {
                 return(
                     <div className={post.isAuthor ? 'displayPosts myPost' : 'displayPosts'} key={post._id}>
-                    
+                   
                     <h2 > {  post.title } </h2>
                     <h3>From: { post.author.username } </h3>
                     <h3>Description:{ post.description } </h3> 
